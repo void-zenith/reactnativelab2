@@ -19,8 +19,18 @@ export default function App() {
   };
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const randomHex = () => {
+    return `#${Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0")}`;
+  };
   return (
-    <View style={[styles.container, isEnabled && styles.darkMode]}>
+    <View
+      style={[
+        styles.container,
+        isEnabled ? styles.darkMode : { backgroundColor: randomHex() },
+      ]}
+    >
       <Text style={[isEnabled && styles.textOnDarkMode]}>Register Student</Text>
       <TextInput
         style={[isEnabled && styles.textOnDarkMode]}
@@ -51,7 +61,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
