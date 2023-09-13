@@ -18,7 +18,11 @@ export default function App() {
     setTextValue("");
   };
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [randomHexValuex, setRandomHex] = useState("");
+  const toggleSwitch = () => {
+    setRandomHex(randomHex());
+    setIsEnabled((previousState) => !previousState);
+  };
   const randomHex = () => {
     return `#${Math.floor(Math.random() * 16777215)
       .toString(16)
@@ -28,7 +32,7 @@ export default function App() {
     <View
       style={[
         styles.container,
-        isEnabled ? styles.darkMode : { backgroundColor: randomHex() },
+        isEnabled ? styles.darkMode : { backgroundColor: randomHexValuex },
       ]}
     >
       <Text style={[isEnabled && styles.textOnDarkMode]}>Register Student</Text>
